@@ -43,18 +43,68 @@ namespace brunopizza
 
             //vendas de mercadorias produtos e servicos
             var l = b.VendasDeMercadoriasProdutosServicos();
-            Console.WriteLine("VendasDeMercadoriasProdutosServicos => "+ l.ToString());
+            Console.WriteLine("VendasDeMercadoriasProdutosServicos => " + l.ToString());
             //outras receitas
             var m = b.OutrasReceitas();
-            Console.WriteLine("OutrasReceitas => "+m.ToString());
+            Console.WriteLine("OutrasReceitas => " + m.ToString());
             //Provisao Para devedores duvidosos
             var n = b.ProvisaoParaDevedoresDuvidosos();
             Console.WriteLine("OutrasReceitas => " + n.ToString());
             //CustoDosProdutosMercadoriasEServicosVendidos()
             var p = b.CustoDosProdutosMercadoriasEServicosVendidos();
-            Console.WriteLine("CustoDosProdutosMercadoriasEServicosVendidos => "+ p.ToString());
+            Console.WriteLine("CustoDosProdutosMercadoriasEServicosVendidos => " + p.ToString());
+            //MateriaisEnergiaServicosTerceirosOutros() converter para valor negativo o result
+            var q = b.MateriaisEnergiaServicosTerceirosOutros();
+            Console.WriteLine("MateriaisEnergiaServicosTerceirosOutros => " + q.ToString());
+            //DepreciacaoAmortizacaoExaustao()
+            var r = b.DepreciacaoAmortizacaoExaustao();
+            Console.WriteLine("DepreciacaoAmortizacaoExaustao => " + r.ToString());
+            //ResultadoEquivalenciaPatrimonial()
+            var s = b.ResultadoEquivalenciaPatrimonial();
+            Console.WriteLine("ResultadoEquivalenciaPatrimonial => " + s.ToString());
+            //ReceitaFinanceiras()
+            var t = b.ReceitaFinanceiras();
+            Console.WriteLine("ReceitaFinanceiras => " + t.ToString());
+            //Outras()
+            var u = b.Outras();
+            Console.WriteLine("Outras => " + u.ToString());
+            //RemuneracaoDireta()
+            var v = b.RemuneracaoDireta();
+            Console.WriteLine("RemuneracaoDireta => " + v.ToString());
+            //Beneficios()
+            var x = b.Beneficios();
+            Console.WriteLine("Beneficios => " + x.ToString());
+            //Fgts()
+            var y = b.Fgts();
+            Console.WriteLine("Fgts => " + y.ToString());
+            //Federais()
+            var z = b.Federais();
+            Console.WriteLine("Federais => " + z.ToString());
+            //Estaduais()
+            var aa = b.Estaduais();
+            Console.WriteLine("Estaduais => " + aa.ToString());
+            //Municipais()
+            var bb = b.Municipais();
+            Console.WriteLine("Municipais => " + bb.ToString());
+            //Juros()
+            var cc = b.Juros();
+            Console.WriteLine("Juros => " + cc.ToString());
+            //Alugueis()
+            var dd = b.Alugueis();
+            Console.WriteLine("Alugueis => " + dd.ToString());
+            //OutrasNaDistribuicao()
+            var ee = b.OutrasNaDistribuicao();
+            Console.WriteLine("OutrasNaDistribuicao => " + ee.ToString());
+            //JurosSobreCapitalProprio()
+            var ff = b.JurosSobreCapitalProprio();
+            Console.WriteLine("JurosSobreCapitalProprio => " + ff.ToString());
+            //LucrosRetidosPrejuizosDoExercicio()
+            var gg = b.LucrosRetidosPrejuizosDoExercicio();
+            Console.WriteLine("LucrosRetidosPrejuizosDoExercicio => " + gg.ToString());
+
+
             //total
-            Console.WriteLine("Total => "+ (l+m+n).ToString());
+            Console.WriteLine("Total => " + (l + m + n).ToString());
 
 
 
@@ -141,16 +191,28 @@ namespace brunopizza
                 valorcred = (valorcred - ret[1]);
 
                 //acabou de aplicar o zz 
-                string clasct = classifconta.Substring(0, 2);
-                if (clasct.Contains("4."))
+                //string clasct = classifconta.Substring(0, 2);
+                //if (clasct.Contains("4."))
+                //{
+                //    movcontactb = Math.Round((valorcred - valordeb), 2);
+                //
+                //}
+                //else if (clasct.Contains("5.") || clasct.Contains("6."))
+                //{
+                //    movcontactb = Math.Round((valordeb - valorcred), 2);
+                //}
+
+                string clasct = natursaldo.Substring(0, 2);
+                if (clasct.Contains("-1"))
                 {
                     movcontactb = Math.Round((valorcred - valordeb), 2);
 
                 }
-                else if (clasct.Contains("5.") || clasct.Contains("6."))
+                else if (clasct.Contains("1"))
                 {
                     movcontactb = Math.Round((valordeb - valorcred), 2);
                 }
+
                 //add to list static
                 saldomes.Add(new SaldoctbMensalTotal
                 {
@@ -356,7 +418,7 @@ namespace brunopizza
                 {
                     tolalzao += Math.Abs(item.MovContaCtbDva);
                 }
-                
+
             }
             return tolalzao;
         }
@@ -378,9 +440,49 @@ namespace brunopizza
         public double CustoDosProdutosMercadoriasEServicosVendidos()
         {
             double tolalzao = 0;
+
             foreach (var item in movicontdva)
             {
-                if (item.ContactbDva.Contains("3003") || item.ContactbDva.Contains("3008"))
+                if (item.ContactbDva.Contains("3003") || item.ContactbDva.Contains("3008") || item.ContactbDva.Contains("3030") || item.ContactbDva.Contains("5254") || item.ContactbDva.Contains("3040") || item.ContactbDva.Contains("3048") || item.ContactbDva.Contains("3049") || item.ContactbDva.Contains("4907") || item.ContactbDva.Contains("5108") || item.ContactbDva.Contains("4871") || item.ContactbDva.Contains("5472") || item.ContactbDva.Contains("3063") || item.ContactbDva.Contains("3052") || item.ContactbDva.Contains("3053") || item.ContactbDva.Contains("3088") || item.ContactbDva.Contains("5379") || item.ContactbDva.Contains("3097") || item.ContactbDva.Contains("3098") || item.ContactbDva.Contains("3050") || item.ContactbDva.Contains("3051") || item.ContactbDva.Contains("3607") || item.ContactbDva.Contains("3654") || item.ContactbDva.Contains("4911") || item.ContactbDva.Contains("5109") || item.ContactbDva.Contains("5110") || item.ContactbDva.Contains("5066") || item.ContactbDva.Contains("5067") || item.ContactbDva.Contains("3988") || item.ContactbDva.Contains("4758") || item.ContactbDva.Contains("5464"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }                
+                else if (item.ContactbDva.Contains("5390") || item.ContactbDva.Contains("5105") || item.ContactbDva.Contains("4986") || item.ContactbDva.Contains("4909") || item.ContactbDva.Contains("5405") || item.ContactbDva.Contains("4910") || item.ContactbDva.Contains("4920") || item.ContactbDva.Contains("4908") || item.ContactbDva.Contains("5142"))
+                {
+                    tolalzao -= Math.Abs(item.MovContaCtbDva);
+                }
+
+            }
+            return tolalzao;
+
+        }
+
+        public double MateriaisEnergiaServicosTerceirosOutros()
+        {
+            double tolalzao = 0;
+           
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("3168") || item.ContactbDva.Contains("3241") || item.ContactbDva.Contains("3465") || item.ContactbDva.Contains("3492") || item.ContactbDva.Contains("3572") || item.ContactbDva.Contains("3749") || item.ContactbDva.Contains("3822") || item.ContactbDva.Contains("3846") || item.ContactbDva.Contains("3873") || item.ContactbDva.Contains("3953") || item.ContactbDva.Contains("4061") || item.ContactbDva.Contains("4083") || item.ContactbDva.Contains("4112") || item.ContactbDva.Contains("4139") || item.ContactbDva.Contains("4183") || item.ContactbDva.Contains("4212") || item.ContactbDva.Contains("4239") || item.ContactbDva.Contains("4281") || item.ContactbDva.Contains("4375") || item.ContactbDva.Contains("4404") || item.ContactbDva.Contains("4431") || item.ContactbDva.Contains("4475") || item.ContactbDva.Contains("5488") || item.ContactbDva.Contains("5487") || item.ContactbDva.Contains("4504") || item.ContactbDva.Contains("4531") || item.ContactbDva.Contains("5491") || item.ContactbDva.Contains("5490") || item.ContactbDva.Contains("4580") || item.ContactbDva.Contains("4604"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("3573") || item.ContactbDva.Contains("4217") || item.ContactbDva.Contains("4240") || item.ContactbDva.Contains("4248") || item.ContactbDva.Contains("4509") || item.ContactbDva.Contains("4532") || item.ContactbDva.Contains("4608"))
+                {
+                    tolalzao -= Math.Abs(item.MovContaCtbDva);
+                }
+                
+            }
+            return tolalzao;
+
+        }
+        public double DepreciacaoAmortizacaoExaustao()
+        {
+           double tolalzao = 0;
+            
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("3548") || item.ContactbDva.Contains("3929") || item.ContactbDva.Contains("4160") || item.ContactbDva.Contains("4452") || item.ContactbDva.Contains("4632"))
                 {
                     tolalzao += Math.Abs(item.MovContaCtbDva);
                 }
@@ -389,9 +491,260 @@ namespace brunopizza
             return tolalzao;
 
         }
+        public double ResultadoEquivalenciaPatrimonial()
+        {
+            double tolalzao = 0;
 
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("2890") || item.ContactbDva.Contains("2891") || item.ContactbDva.Contains("5148") || item.ContactbDva.Contains("5150") || item.ContactbDva.Contains("5161") || item.ContactbDva.Contains("5164"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
 
+            }
+            return tolalzao;
 
+        }
+        public double ReceitaFinanceiras()
+        {
+            double tolalzao = 0;            
 
-    }
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("2857"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+
+            }
+            return tolalzao;
+
+        }
+        public double Outras()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("2884") || item.ContactbDva.Contains("5375"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("2890") || item.ContactbDva.Contains("2891") || item.ContactbDva.Contains("5148") || item.ContactbDva.Contains("5150"))
+                {
+                    tolalzao -= Math.Abs(item.MovContaCtbDva);
+                }
+
+            }
+            return tolalzao;
+
+        }
+        public double RemuneracaoDireta()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("3120") || item.ContactbDva.Contains("3193") || item.ContactbDva.Contains("3701") || item.ContactbDva.Contains("3774") || item.ContactbDva.Contains("4013") || item.ContactbDva.Contains("4327"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("3130") || item.ContactbDva.Contains("3131") || item.ContactbDva.Contains("3132") || item.ContactbDva.Contains("3133") || item.ContactbDva.Contains("3135") || item.ContactbDva.Contains("5097") || item.ContactbDva.Contains("3138") || item.ContactbDva.Contains("3141") || item.ContactbDva.Contains("5014") || item.ContactbDva.Contains("3142") || item.ContactbDva.Contains("5033") || item.ContactbDva.Contains("3145") || item.ContactbDva.Contains("3147") || item.ContactbDva.Contains("5176") || item.ContactbDva.Contains("5225") || item.ContactbDva.Contains("3203") || item.ContactbDva.Contains("3204") || item.ContactbDva.Contains("3205") || item.ContactbDva.Contains("3206") || item.ContactbDva.Contains("3208") || item.ContactbDva.Contains("5098") || item.ContactbDva.Contains("3211") || item.ContactbDva.Contains("3213") || item.ContactbDva.Contains("3214") || item.ContactbDva.Contains("5015") || item.ContactbDva.Contains("3215") || item.ContactbDva.Contains("3217") || item.ContactbDva.Contains("5034") || item.ContactbDva.Contains("3218") || item.ContactbDva.Contains("3220") || item.ContactbDva.Contains("3221") || item.ContactbDva.Contains("5188") || item.ContactbDva.Contains("5227") || item.ContactbDva.Contains("3711") || item.ContactbDva.Contains("3712") || item.ContactbDva.Contains("3713") || item.ContactbDva.Contains("3714") || item.ContactbDva.Contains("3716") || item.ContactbDva.Contains("5099") || item.ContactbDva.Contains("3719") || item.ContactbDva.Contains("3721") || item.ContactbDva.Contains("3722") || item.ContactbDva.Contains("5016") || item.ContactbDva.Contains("3723") || item.ContactbDva.Contains("3725") || item.ContactbDva.Contains("5035") || item.ContactbDva.Contains("3726") || item.ContactbDva.Contains("3727") || item.ContactbDva.Contains("3728") || item.ContactbDva.Contains("5229") || item.ContactbDva.Contains("3784") || item.ContactbDva.Contains("3785") || item.ContactbDva.Contains("3786") || item.ContactbDva.Contains("3787") || item.ContactbDva.Contains("3789") || item.ContactbDva.Contains("5100") || item.ContactbDva.Contains("3792") || item.ContactbDva.Contains("3794") || item.ContactbDva.Contains("3795") || item.ContactbDva.Contains("5017") || item.ContactbDva.Contains("3796") || item.ContactbDva.Contains("3798") || item.ContactbDva.Contains("5036") || item.ContactbDva.Contains("3799") || item.ContactbDva.Contains("3800") || item.ContactbDva.Contains("3801") || item.ContactbDva.Contains("3802") || item.ContactbDva.Contains("5231") || item.ContactbDva.Contains("4023") || item.ContactbDva.Contains("4024") || item.ContactbDva.Contains("4025") || item.ContactbDva.Contains("4026") || item.ContactbDva.Contains("5102") || item.ContactbDva.Contains("4028") || item.ContactbDva.Contains("5101") || item.ContactbDva.Contains("4031") || item.ContactbDva.Contains("4033") || item.ContactbDva.Contains("4034") || item.ContactbDva.Contains("5018") || item.ContactbDva.Contains("4035") || item.ContactbDva.Contains("4037") || item.ContactbDva.Contains("5037") || item.ContactbDva.Contains("4038") || item.ContactbDva.Contains("4039") || item.ContactbDva.Contains("4038") || item.ContactbDva.Contains("4040") || item.ContactbDva.Contains("4041") || item.ContactbDva.Contains("5233") || item.ContactbDva.Contains("4337") || item.ContactbDva.Contains("4338") || item.ContactbDva.Contains("4339") || item.ContactbDva.Contains("4340") || item.ContactbDva.Contains("4342") || item.ContactbDva.Contains("4974") || item.ContactbDva.Contains("4345") || item.ContactbDva.Contains("4347") || item.ContactbDva.Contains("4348") || item.ContactbDva.Contains("5019") || item.ContactbDva.Contains("4349") || item.ContactbDva.Contains("4351") || item.ContactbDva.Contains("5038") || item.ContactbDva.Contains("4352") || item.ContactbDva.Contains("4353") || item.ContactbDva.Contains("4354") || item.ContactbDva.Contains("4355") || item.ContactbDva.Contains("5220") || item.ContactbDva.Contains("5235"))
+                {
+                    tolalzao -= Math.Abs(item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("3128") || item.ContactbDva.Contains("3201") || item.ContactbDva.Contains("3709") || item.ContactbDva.Contains("3782") || item.ContactbDva.Contains("4021") || item.ContactbDva.Contains("4335"))
+                {
+                    tolalzao -= Math.Abs(item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("3127") || item.ContactbDva.Contains("3148") || item.ContactbDva.Contains("3200") || item.ContactbDva.Contains("3221") || item.ContactbDva.Contains("3708") || item.ContactbDva.Contains("3729") || item.ContactbDva.Contains("3781") || item.ContactbDva.Contains("3802") || item.ContactbDva.Contains("4020") || item.ContactbDva.Contains("4041") || item.ContactbDva.Contains("4334") || item.ContactbDva.Contains("4355"))
+                {
+                    tolalzao -= Math.Abs(item.MovContaCtbDva);
+                }
+
+            }
+            return tolalzao;
+
+        }
+        public double Beneficios()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("3130") || item.ContactbDva.Contains("3131") || item.ContactbDva.Contains("3132") || item.ContactbDva.Contains("3133") || item.ContactbDva.Contains("3135") || item.ContactbDva.Contains("5097") || item.ContactbDva.Contains("3138") || item.ContactbDva.Contains("3141") || item.ContactbDva.Contains("5014") || item.ContactbDva.Contains("3142") || item.ContactbDva.Contains("5033") || item.ContactbDva.Contains("3145") || item.ContactbDva.Contains("3147") || item.ContactbDva.Contains("5176") || item.ContactbDva.Contains("5225") || item.ContactbDva.Contains("3203") || item.ContactbDva.Contains("3204") || item.ContactbDva.Contains("3205") || item.ContactbDva.Contains("3206") || item.ContactbDva.Contains("3208") || item.ContactbDva.Contains("5098") || item.ContactbDva.Contains("3211") || item.ContactbDva.Contains("3213") || item.ContactbDva.Contains("3214") || item.ContactbDva.Contains("5015") || item.ContactbDva.Contains("3215") || item.ContactbDva.Contains("3217") || item.ContactbDva.Contains("5034") || item.ContactbDva.Contains("3218") || item.ContactbDva.Contains("3220") || item.ContactbDva.Contains("3221") || item.ContactbDva.Contains("5188") || item.ContactbDva.Contains("5227") || item.ContactbDva.Contains("3711") || item.ContactbDva.Contains("3712") || item.ContactbDva.Contains("3713") || item.ContactbDva.Contains("3714") || item.ContactbDva.Contains("3716") || item.ContactbDva.Contains("5099") || item.ContactbDva.Contains("3719") || item.ContactbDva.Contains("3721") || item.ContactbDva.Contains("3722") || item.ContactbDva.Contains("5016") || item.ContactbDva.Contains("3723") || item.ContactbDva.Contains("3725") || item.ContactbDva.Contains("5035") || item.ContactbDva.Contains("3726") || item.ContactbDva.Contains("3727") || item.ContactbDva.Contains("3728") || item.ContactbDva.Contains("5229") || item.ContactbDva.Contains("3784") || item.ContactbDva.Contains("3785") || item.ContactbDva.Contains("3786") || item.ContactbDva.Contains("3787") || item.ContactbDva.Contains("3789") || item.ContactbDva.Contains("5100") || item.ContactbDva.Contains("3792") || item.ContactbDva.Contains("3794") || item.ContactbDva.Contains("3795") || item.ContactbDva.Contains("5017") || item.ContactbDva.Contains("3796") || item.ContactbDva.Contains("3798") || item.ContactbDva.Contains("5036") || item.ContactbDva.Contains("3799") || item.ContactbDva.Contains("3800") || item.ContactbDva.Contains("3801") || item.ContactbDva.Contains("3802") || item.ContactbDva.Contains("5231") || item.ContactbDva.Contains("4023") || item.ContactbDva.Contains("4024") || item.ContactbDva.Contains("4025") || item.ContactbDva.Contains("4026") || item.ContactbDva.Contains("5102") || item.ContactbDva.Contains("4028") || item.ContactbDva.Contains("5101") || item.ContactbDva.Contains("4031") || item.ContactbDva.Contains("4033") || item.ContactbDva.Contains("4034") || item.ContactbDva.Contains("5018") || item.ContactbDva.Contains("4035") || item.ContactbDva.Contains("4037") || item.ContactbDva.Contains("5037") || item.ContactbDva.Contains("4038") || item.ContactbDva.Contains("4039") || item.ContactbDva.Contains("4038") || item.ContactbDva.Contains("4040") || item.ContactbDva.Contains("4041") || item.ContactbDva.Contains("5233") || item.ContactbDva.Contains("4337") || item.ContactbDva.Contains("4338") || item.ContactbDva.Contains("4339") || item.ContactbDva.Contains("4340") || item.ContactbDva.Contains("4342") || item.ContactbDva.Contains("4974") || item.ContactbDva.Contains("4345") || item.ContactbDva.Contains("4347") || item.ContactbDva.Contains("4348") || item.ContactbDva.Contains("5019") || item.ContactbDva.Contains("4349") || item.ContactbDva.Contains("4351") || item.ContactbDva.Contains("5038") || item.ContactbDva.Contains("4352") || item.ContactbDva.Contains("4353") || item.ContactbDva.Contains("4354") || item.ContactbDva.Contains("4355") || item.ContactbDva.Contains("5220") || item.ContactbDva.Contains("5235"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+                
+            }
+            return tolalzao;
+
+        }
+        public double Fgts()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("3128") || item.ContactbDva.Contains("3201") || item.ContactbDva.Contains("3709") || item.ContactbDva.Contains("3782") || item.ContactbDva.Contains("4021") || item.ContactbDva.Contains("4335"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+                
+
+            }
+            return tolalzao;
+
+        }
+        public double Federais()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("5007") || item.ContactbDva.Contains("5111") || item.ContactbDva.Contains("5103") || item.ContactbDva.Contains("5112") || item.ContactbDva.Contains("2826") || item.ContactbDva.Contains("2829") || item.ContactbDva.Contains("2830") || item.ContactbDva.Contains("2831") || item.ContactbDva.Contains("2833") || item.ContactbDva.Contains("3060") || item.ContactbDva.Contains("3061") || item.ContactbDva.Contains("5060") || item.ContactbDva.Contains("4986") || item.ContactbDva.Contains("4920") || item.ContactbDva.Contains("3127") || item.ContactbDva.Contains("3148") || item.ContactbDva.Contains("3200") || item.ContactbDva.Contains("3221") || item.ContactbDva.Contains("5109") || item.ContactbDva.Contains("5110") || item.ContactbDva.Contains("3708") || item.ContactbDva.Contains("3729") || item.ContactbDva.Contains("3781") || item.ContactbDva.Contains("3802") || item.ContactbDva.Contains("4020") || item.ContactbDva.Contains("4041") || item.ContactbDva.Contains("4334") || item.ContactbDva.Contains("4355") || item.ContactbDva.Contains("4656") || item.ContactbDva.Contains("5520") || item.ContactbDva.Contains("4659") || item.ContactbDva.Contains("4662") || item.ContactbDva.Contains("4660") || item.ContactbDva.Contains("4661") || item.ContactbDva.Contains("4666") || item.ContactbDva.Contains("5057") || item.ContactbDva.Contains("4667") || item.ContactbDva.Contains("4670") || item.ContactbDva.Contains("4671") || item.ContactbDva.Contains("4672") || item.ContactbDva.Contains("4828") || item.ContactbDva.Contains("4829"))
+                {
+                    tolalzao += (item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("2834") || item.ContactbDva.Contains("3048") || item.ContactbDva.Contains("3049") || item.ContactbDva.Contains("5108") || item.ContactbDva.Contains("3052") || item.ContactbDva.Contains("3053") || item.ContactbDva.Contains("3098") || item.ContactbDva.Contains("3050") || item.ContactbDva.Contains("3051") || item.ContactbDva.Contains("5066") || item.ContactbDva.Contains("5067") || item.ContactbDva.Contains("5485") || item.ContactbDva.Contains("5486") || item.ContactbDva.Contains("5488") || item.ContactbDva.Contains("5487") || item.ContactbDva.Contains("5491") || item.ContactbDva.Contains("5490") || item.ContactbDva.Contains("5476") || item.ContactbDva.Contains("5475"))
+                {
+                    tolalzao -= (item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("5423"))
+                {
+                    tolalzao -= (item.MovContaCtbDva);
+                }
+
+            }
+            return tolalzao;
+
+        }
+        public double Estaduais()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("2827") || item.ContactbDva.Contains("2832") || item.ContactbDva.Contains("5467") || item.ContactbDva.Contains("5390") || item.ContactbDva.Contains("5105") || item.ContactbDva.Contains("4909") || item.ContactbDva.Contains("5405") || item.ContactbDva.Contains("4910") || item.ContactbDva.Contains("4908") || item.ContactbDva.Contains("5142") || item.ContactbDva.Contains("4911") || item.ContactbDva.Contains("4657") || item.ContactbDva.Contains("4669") || item.ContactbDva.Contains("4673") || item.ContactbDva.Contains("5056") || item.ContactbDva.Contains("4918") || item.ContactbDva.Contains("4919") || item.ContactbDva.Contains("5055"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("3008") || item.ContactbDva.Contains("5254") || item.ContactbDva.Contains("3040") || item.ContactbDva.Contains("4907") || item.ContactbDva.Contains("4871") || item.ContactbDva.Contains("5379") || item.ContactbDva.Contains("3097") || item.ContactbDva.Contains("2835"))
+                {
+                    tolalzao -= Math.Abs(item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("5534") || item.ContactbDva.Contains("5154"))
+                {
+                    tolalzao -= Math.Abs(item.MovContaCtbDva);
+                }
+
+            }
+            return tolalzao;
+
+        }
+        public double Municipais()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("2828") || item.ContactbDva.Contains("3573") || item.ContactbDva.Contains("3954") || item.ContactbDva.Contains("4240") || item.ContactbDva.Contains("4532") || item.ContactbDva.Contains("4658") || item.ContactbDva.Contains("4663") || item.ContactbDva.Contains("4665") || item.ContactbDva.Contains("4668") || item.ContactbDva.Contains("4674"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+                
+            }
+            return tolalzao;
+
+        }
+        public double Juros()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("4669") || item.ContactbDva.Contains("5160") || item.ContactbDva.Contains("5497") || item.ContactbDva.Contains("4700") || item.ContactbDva.Contains("4701") || item.ContactbDva.Contains("5407"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }                
+
+            }
+            return tolalzao;
+
+        }
+        public double Alugueis()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("3523") || item.ContactbDva.Contains("5069") || item.ContactbDva.Contains("5073") || item.ContactbDva.Contains("3904") || item.ContactbDva.Contains("4137") || item.ContactbDva.Contains("4217") || item.ContactbDva.Contains("4248") || item.ContactbDva.Contains("4429") || item.ContactbDva.Contains("5485") || item.ContactbDva.Contains("5486") || item.ContactbDva.Contains("4509") || item.ContactbDva.Contains("4608"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("4139") || item.ContactbDva.Contains("4431"))
+                {
+                    tolalzao -= Math.Abs(item.MovContaCtbDva);
+                }
+
+            }
+            return tolalzao;
+
+        }
+        public double OutrasNaDistribuicao()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("4696"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("4699") || item.ContactbDva.Contains("5160") || item.ContactbDva.Contains("5497") || item.ContactbDva.Contains("4700") || item.ContactbDva.Contains("4701") || item.ContactbDva.Contains("4702") || item.ContactbDva.Contains("5161") || item.ContactbDva.Contains("5164") || item.ContactbDva.Contains("5407") || item.ContactbDva.Contains("5483"))
+                {
+                    tolalzao -= Math.Abs(item.MovContaCtbDva);
+                }
+
+            }
+            return tolalzao;
+
+        }
+        public double JurosSobreCapitalProprio()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("4702"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+
+            }
+            return tolalzao;
+
+        }
+        public double LucrosRetidosPrejuizosDoExercicio()
+        {
+            double tolalzao = 0;
+
+            foreach (var item in movicontdva)
+            {
+                if (item.ContactbDva.Contains("2600"))
+                {
+                    tolalzao += Math.Abs(item.MovContaCtbDva);
+                }
+                else if (item.ContactbDva.Contains("3000") || item.ContactbDva.Contains("4800"))
+                {
+                    tolalzao -= Math.Abs(item.MovContaCtbDva);
+                }
+
+            }
+            return tolalzao;
+
+        }
+    } 
 }

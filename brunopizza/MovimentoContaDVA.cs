@@ -14,13 +14,15 @@ namespace brunopizza
         public string NatursaldoDva { get; set; }
         public double MovContaCtbDva { get; set; }
         public double MovContaCtbDvaTotal { get; set; }
+        public double MovContaCtbDvaDeb { get; set; }
+        public double MovContaCtbDvaCred { get; set; }
 
 
         public MovimentoContaDVA()
         {
         }
 
-        public MovimentoContaDVA(string codigoPadraoDva, string contactbDva, string tipocontaDva, string classifcontaDva, string descrcontaDva, string natursaldoDva, double movContaCtbDva, double movContaCtbDvaTotal)
+        public MovimentoContaDVA(string codigoPadraoDva, string contactbDva, string tipocontaDva, string classifcontaDva, string descrcontaDva, string natursaldoDva, double movContaCtbDva, double movContaCtbDvaTotal, double movContaCtbDvaDeb, double movContaCtbDvaCred)
         {
             CodigoPadraoDva = codigoPadraoDva;
             ContactbDva = contactbDva;
@@ -30,6 +32,8 @@ namespace brunopizza
             NatursaldoDva = natursaldoDva;
             MovContaCtbDva = movContaCtbDva;
             MovContaCtbDvaTotal = movContaCtbDvaTotal;
+            MovContaCtbDvaDeb = movContaCtbDvaDeb;
+            MovContaCtbDvaCred = movContaCtbDvaCred;
         }
     }
 }
